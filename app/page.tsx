@@ -46,7 +46,7 @@ export default function InvitationMia() {
   const whatsappUrl = `https://wa.me/5491133018648?text=${whatsappText}`;
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="fixed inset-0 w-screen h-screen overflow-hidden">
       <audio ref={audioRef} loop autoPlay>
         <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Christina%20Aguilera%20-%20Genie%20In%20A%20Bottle%20%28Official%20Video%29-mTI56cowYmOAebKOVlq429gVunVhgA.mp3" type="audio/mpeg" />
       </audio>
@@ -63,7 +63,7 @@ export default function InvitationMia() {
               muted
               playsInline
               onEnded={handleIntroVideoEnd}
-              className="w-full h-full object-cover"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover"
             >
               <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Parte%201%20mia-gMsFPtPZrJ0Vj0Y6MNPphUv3jKL6vT.mp4" type="video/mp4" />
             </video>
@@ -77,7 +77,7 @@ export default function InvitationMia() {
           loop
           muted
           playsInline
-          className="fixed inset-0 w-full h-full object-cover"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover"
         >
           <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Parte%202%20mia-6LPk06lDojdCXIlP9c5NJkOPEFP0qN.mp4" type="video/mp4" />
         </video>
@@ -89,16 +89,16 @@ export default function InvitationMia() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="relative z-10 min-h-screen flex items-center justify-center p-4"
+            className="relative z-10 h-full w-full overflow-y-auto overflow-x-hidden flex items-center justify-center p-4 sm:p-6 lg:p-8"
           >
-            <div className="w-full max-w-5xl bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-6 md:p-12">
+            <div className="w-full max-w-5xl bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12 my-4">
               {/* Header */}
-              <div className="text-center mb-8">
+              <div className="text-center mb-6 sm:mb-8">
                 <motion.h1
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="text-4xl md:text-6xl font-bold text-gray-900 mb-4"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-3 sm:mb-4"
                 >
                   Mis XV
                 </motion.h1>
@@ -106,7 +106,7 @@ export default function InvitationMia() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="text-xl md:text-2xl text-gray-600"
+                  className="text-lg sm:text-xl md:text-2xl text-gray-600"
                 >
                   Sábado 27 de Diciembre, 2025
                 </motion.p>
@@ -117,20 +117,20 @@ export default function InvitationMia() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
-                className="mb-12"
+                className="mb-8 sm:mb-10 lg:mb-12"
               >
-                <div className="grid grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 max-w-2xl mx-auto">
                   {[
                     { value: days, label: "DÍAS" },
                     { value: hrs, label: "HORAS" },
                     { value: min, label: "MIN" },
                     { value: sec, label: "SEG" },
                   ].map((item, i) => (
-                    <div key={i} className="bg-gray-100 rounded-2xl p-4 text-center">
-                      <div className="text-3xl md:text-5xl font-bold text-gray-900 mb-1">
+                    <div key={i} className="bg-gray-100 rounded-xl sm:rounded-2xl p-2 sm:p-3 md:p-4 text-center">
+                      <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-0.5 sm:mb-1">
                         {String(item.value).padStart(2, "0")}
                       </div>
-                      <div className="text-xs md:text-sm text-gray-600 uppercase tracking-wider">
+                      <div className="text-[10px] sm:text-xs md:text-sm text-gray-600 uppercase tracking-wider">
                         {item.label}
                       </div>
                     </div>
@@ -143,27 +143,27 @@ export default function InvitationMia() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9 }}
-                className="grid md:grid-cols-2 gap-8 mb-8"
+                className="grid sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8"
               >
-                <div className="bg-gray-50 rounded-2xl p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-pink-600" />
+                <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-pink-600" />
                     Detalles del Evento
                   </h3>
-                  <div className="space-y-3 text-gray-700">
+                  <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-700">
                     <p>
                       <strong className="text-gray-900">Lugar:</strong> Beirut Recepciones
                     </p>
-                    <p className="text-sm">Pres. D. F. Sarmiento 1351, Lanús</p>
+                    <p className="text-xs sm:text-sm">Pres. D. F. Sarmiento 1351, Lanús</p>
                     <p>
                       <strong className="text-gray-900">Hora:</strong> 21:30 - 05:30
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-2xl p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Información Adicional</h3>
-                  <div className="space-y-3 text-gray-700">
+                <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Información Adicional</h3>
+                  <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-700">
                     <p>
                       <strong className="text-gray-900">Dress Code:</strong> Elegante
                     </p>
@@ -179,13 +179,13 @@ export default function InvitationMia() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.1 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
               >
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-8 py-4 bg-pink-600 text-white rounded-full font-semibold text-center hover:bg-pink-700 transition-colors shadow-lg"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-pink-600 text-white rounded-full font-semibold text-sm sm:text-base text-center hover:bg-pink-700 transition-colors shadow-lg"
                 >
                   Confirmar Asistencia
                 </a>
@@ -193,7 +193,7 @@ export default function InvitationMia() {
                   href={mapsUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-8 py-4 bg-gray-200 text-gray-900 rounded-full font-semibold text-center hover:bg-gray-300 transition-colors"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gray-200 text-gray-900 rounded-full font-semibold text-sm sm:text-base text-center hover:bg-gray-300 transition-colors"
                 >
                   Ver Ubicación
                 </a>
