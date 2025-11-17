@@ -1,0 +1,207 @@
+"use client";
+
+import React, { useEffect, useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MapPin } from 'lucide-react';
+
+export default function InvitationMia() {
+  const targetDate = new Date("2025-12-27T21:30:00-03:00");
+  const [now, setNow] = useState(new Date());
+  const [showIntroVideo, setShowIntroVideo] = useState(true);
+  const [showContent, setShowContent] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const introVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.play().catch(e => console.log("[v0] Audio autoplay prevented:", e));
+    }
+  }, []);
+
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  const handleIntroVideoEnd = () => {
+    setShowIntroVideo(false);
+    setShowContent(true);
+  };
+
+  function getCountdownParts() {
+    const diff = Math.max(0, targetDate.getTime() - now.getTime());
+    const sec = Math.floor(diff / 1000) % 60;
+    const min = Math.floor(diff / 1000 / 60) % 60;
+    const hrs = Math.floor(diff / (1000 * 60 * 60)) % 24;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    return { days, hrs, min, sec };
+  }
+
+  const { days, hrs, min, sec } = getCountdownParts();
+
+  const mapsUrl = "https://www.google.com/maps/place/Beirut+Recepciones/@-34.7023036,-58.3850869,20z/data=!4m15!1m8!3m7!1s0x95bccd266d06670b:0xc07fdd7f7de9d918!2sPres.+Domingo+Faustino+Sarmiento+1351,+B1824NVK+Lan%C3%BAs,+Provincia+de+Buenos+Aires!3b1!8m2!3d-34.7021801!4d-58.3846712!16s%2Fg%2F11k64xcv8v!3m5!1s0x95bccd260cfa7e75:0x92efe9b7a6e06fd2!8m2!3d-34.7023075!4d-58.3845827!16s%2Fg%2F11cmp5hfx_?entry=ttu&g_ep=EgoyMDI1MTExMi4wIKXMDSoASAFQAw%3D%3D";
+  const whatsappText = encodeURIComponent(
+    `Hola! Quiero confirmar mi asistencia al cumpleaños de Mía el Sábado 27 de Diciembre de 2025 a las 21:30.`
+  );
+  const whatsappUrl = `https://wa.me/5491133018648?text=${whatsappText}`;
+
+  return (
+    <div className="min-h-screen relative overflow-hidden">
+      <audio ref={audioRef} loop autoPlay>
+        <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Christina%20Aguilera%20-%20Genie%20In%20A%20Bottle%20%28Official%20Video%29-mTI56cowYmOAebKOVlq429gVunVhgA.mp3" type="audio/mpeg" />
+      </audio>
+
+      <AnimatePresence>
+        {showIntroVideo && (
+          <motion.div
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black"
+          >
+            <video
+              ref={introVideoRef}
+              autoPlay
+              muted
+              playsInline
+              onEnded={handleIntroVideoEnd}
+              className="w-full h-full object-cover"
+            >
+              <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Parte%201%20mia-gMsFPtPZrJ0Vj0Y6MNPphUv3jKL6vT.mp4" type="video/mp4" />
+            </video>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {showContent && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="fixed inset-0 w-full h-full object-cover"
+        >
+          <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Parte%202%20mia-6LPk06lDojdCXIlP9c5NJkOPEFP0qN.mp4" type="video/mp4" />
+        </video>
+      )}
+
+      <AnimatePresence>
+        {showContent && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="relative z-10 min-h-screen flex items-center justify-center p-4"
+          >
+            <div className="w-full max-w-5xl bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-6 md:p-12">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <motion.h1
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-4xl md:text-6xl font-bold text-gray-900 mb-4"
+                >
+                  Mis XV
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-xl md:text-2xl text-gray-600"
+                >
+                  Sábado 27 de Diciembre, 2025
+                </motion.p>
+              </div>
+
+              {/* Countdown */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="mb-12"
+              >
+                <div className="grid grid-cols-4 gap-4 max-w-2xl mx-auto">
+                  {[
+                    { value: days, label: "DÍAS" },
+                    { value: hrs, label: "HORAS" },
+                    { value: min, label: "MIN" },
+                    { value: sec, label: "SEG" },
+                  ].map((item, i) => (
+                    <div key={i} className="bg-gray-100 rounded-2xl p-4 text-center">
+                      <div className="text-3xl md:text-5xl font-bold text-gray-900 mb-1">
+                        {String(item.value).padStart(2, "0")}
+                      </div>
+                      <div className="text-xs md:text-sm text-gray-600 uppercase tracking-wider">
+                        {item.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Event details */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 }}
+                className="grid md:grid-cols-2 gap-8 mb-8"
+              >
+                <div className="bg-gray-50 rounded-2xl p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-pink-600" />
+                    Detalles del Evento
+                  </h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p>
+                      <strong className="text-gray-900">Lugar:</strong> Beirut Recepciones
+                    </p>
+                    <p className="text-sm">Pres. D. F. Sarmiento 1351, Lanús</p>
+                    <p>
+                      <strong className="text-gray-900">Hora:</strong> 21:30 - 05:30
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 rounded-2xl p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Información Adicional</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p>
+                      <strong className="text-gray-900">Dress Code:</strong> Elegante
+                    </p>
+                    <p>
+                      <strong className="text-gray-900">Alias:</strong> miasenorelli.mp
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Action buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.1 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+              >
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-8 py-4 bg-pink-600 text-white rounded-full font-semibold text-center hover:bg-pink-700 transition-colors shadow-lg"
+                >
+                  Confirmar Asistencia
+                </a>
+                <a
+                  href={mapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-8 py-4 bg-gray-200 text-gray-900 rounded-full font-semibold text-center hover:bg-gray-300 transition-colors"
+                >
+                  Ver Ubicación
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
