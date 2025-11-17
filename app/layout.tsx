@@ -21,21 +21,13 @@ export const metadata: Metadata = {
   description: 'Celebremos juntos los 15 años de Mía - 27 de Diciembre 2025',
   generator: 'v0.app',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-c67I2n3M3Dgwpb3XNtqlaGllPx2yUm.png',
+    apple: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-c67I2n3M3Dgwpb3XNtqlaGllPx2yUm.png',
+  },
+  openGraph: {
+    title: 'Invitación XV Años - Mía',
+    description: 'Celebremos juntos los 15 años de Mía - 27 de Diciembre 2025',
+    images: ['https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-c67I2n3M3Dgwpb3XNtqlaGllPx2yUm.png'],
   },
 }
 
