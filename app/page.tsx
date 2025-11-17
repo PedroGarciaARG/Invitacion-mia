@@ -81,7 +81,7 @@ export default function InvitationMia() {
               muted
               playsInline
               onEnded={handleIntroVideoEnd}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-contain"
             >
               <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Parte%201%20mia-gMsFPtPZrJ0Vj0Y6MNPphUv3jKL6vT.mp4" type="video/mp4" />
             </video>
@@ -95,7 +95,7 @@ export default function InvitationMia() {
           loop
           muted
           playsInline
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-contain"
         >
           <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Parte%202%20mia-6LPk06lDojdCXIlP9c5NJkOPEFP0qN.mp4" type="video/mp4" />
         </video>
